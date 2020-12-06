@@ -1,0 +1,28 @@
+# create a basic linux fs
+#  options include rob's mkroot or something like buildroot
+#  we can also simply just pacstrap a basic archlinux install
+sudo pacstrap -c basic_linux/ base linux linux-firmware
+
+# configure it
+#   arch-chroot needs a proper mount (otherwise things like pacman won't work)
+#   so we bind mount 
+mkdir basic_linux_bm
+mount --bind basic_linux basic_linux_bm
+arch-chroot basic_linux_bm
+  # install your tools
+  # set password
+  # put "dmesg -n 1" somewhere, will suppress console dmesg output
+
+# wrap it up 
+ # cpio if you want initramfs
+ # I had trouble getting this to work, something about no root device, even with root=/dev/ram :(
+ # find basic_linux/ -print0 | cpio --block-size=8192 --null -ov --format=newc | gzip - > initramfs.img
+
+ # otherwise ext4 seems to work
+ # p.s. prepopulating an ext4 fs from a dir is a wonderful feature
+  mkfs.ext4 -d basic_linux rootfs2.ext4
+
+# get your kernel and you're ready to go
+cp $some-kernel-somewhere bzImage
+
+bash run

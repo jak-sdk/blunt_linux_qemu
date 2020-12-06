@@ -1,0 +1,5 @@
+arch pacstrap might be convenient but it's also HUGE
+systemd might be overkill too, rob's mkroot looks nice, and a busybox system would probably be fine
+
+perhaps we replace the root fs with a simpler one, alpine?? 
+right now I'm using this to hack on bcachefs so we need the deps for that.. 

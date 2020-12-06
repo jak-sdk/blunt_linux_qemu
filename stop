@@ -1,0 +1,2 @@
+# don't be stupid and run this if you have other vm's running that you don't want to rudely stop
+killall qemu-system-x86_64

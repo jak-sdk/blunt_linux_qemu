@@ -1,0 +1,11 @@
+qemu-system-x86_64 \
+-m 4096m \
+-kernel bzImage \
+-append 'console=ttyS0,115200 console=ttyS0 root=/dev/sda rw ' \
+-hda rootfs.ext4 \
+-usb \
+-nographic \
+-device usb-ehci,id=ehci \
+-device usb-host,bus=usb-bus.0,vendorid=0x046d,productid=0xc52b \
+-device usb-tablet
+#-initrd initramfs.img \
